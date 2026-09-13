@@ -1,9 +1,9 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+Notable changes to this project are recorded here.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Cruise format auto-detection**: Excel files from ArcGIS Survey123/Field Maps with `Plot_form` sheets are automatically recognized and imported, with BAF-to-TPA conversion for variable radius plots, per-log defect summation, and species code derivation
 - **Height sanity check**: Tree heights exceeding 300 ft are flagged as data entry errors and excluded from volume calculations
 - **GeoJSON export button** in web UI alongside CSV and JSON
-- **Confidence level selector** (90/95/99%) in the statistics panel — change without re-uploading
+- **Confidence level selector** (90/95/99%) in the statistics panel; change it without re-uploading
 - **Upload progress indicator** showing filename and spinner during file processing
 - **"New Analysis" button** in the header to start over from the dashboard
 - **Number formatting** with locale-aware comma separators for large values
@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Configuration file wired to web server**: `config.toml` settings for `server.port`, `server.max_upload_bytes`, `database.path` are now used by the web server instead of hardcoded constants
 - **Automated release pipeline**: GitHub Actions workflow builds cross-platform binaries on `v*` tag push, packages Windows zip + MSI installer, Linux/macOS tarballs, generates SHA256 checksums, and creates a GitHub Release with all artifacts
 - **Windows MSI installer**: WiX-based installer with Start Menu and Desktop shortcuts, per-user install (no admin required), automatic upgrade detection
-- **`start.bat` launcher**: Double-click to start the web server and auto-open the browser — included in Windows zip and MSI distributions
+- **`start.bat` launcher**: Double-click to start the web server and auto-open the browser; included in Windows zip and MSI distributions
 
 ### Changed
 - **Dependencies**: calamine 0.26 -> 0.36 (quick-xml 0.41, fixes RUSTSEC-2026-0194/0195), statrs 0.17 -> 0.19 (drops the unmaintained `paste` crate), actix-multipart 0.7 -> 0.8; actix-web built without the `http2` feature so the unpatched h2 0.3 line is no longer linked (RUSTSEC-2026-0258)

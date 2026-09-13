@@ -2,40 +2,40 @@
 
 [![CI](https://github.com/woodsy-will/forest-inventory-analyzer-rust/actions/workflows/ci.yml/badge.svg)](https://github.com/woodsy-will/forest-inventory-analyzer-rust/actions/workflows/ci.yml)
 
-A forest inventory analysis tool built in Rust: a cruise compiler with a command line and a web dashboard. Supports CSV, JSON, and Excel formats with statistical analysis, growth projections, text-based visualization, and an optional web UI.
+A cruise compiler written in Rust. It reads a plot tally from a variable-radius (prism) cruise, or a Survey123 or Field Maps export, and writes per-acre stand metrics, species composition, a text histogram of diameter classes, sampling error with confidence intervals, and a growth projection. Input and output are CSV, JSON or Excel. It runs from the command line; the web dashboard is optional. Volume equations are placeholders and the installers are unsigned. See Methods and limitations.
 
 ## Features
 
-- **Cruise Import** - Survey123 and Field Maps plot exports with BAF expansion for variable-radius plots
-- **Stand Metrics** - Trees per acre, basal area, volume (cubic & board feet), quadratic mean diameter
-- **Species Composition** - Breakdown by species with percentage of TPA and basal area
-- **Statistical Analysis** - Confidence intervals, sampling error, standard error using Student's t-distribution
-- **Diameter Distribution** - Text-based histogram of diameter classes
-- **Growth Projections** - Exponential, logistic, and linear growth models with configurable mortality
-- **Multi-Format I/O** - Read/write CSV, JSON, and Excel (.xlsx) files; export to GeoJSON
-- **Format Conversion** - Convert between any supported formats (CSV, JSON, Excel, GeoJSON)
-- **Batch Processing** - Analyze entire directories of inventory files with JSON report output
-- **Configuration File** - Optional `config.toml` for persistent settings (server, analysis, growth, database)
-- **Web UI** - Browser-based dashboard with file upload, interactive charts, data editing, and export
-- **SQLite Persistence** - Server-side inventory storage with TTL-based eviction
+- Cruise import: Survey123 and Field Maps plot exports with BAF expansion for variable-radius plots
+- Stand metrics: trees per acre, basal area, volume (cubic & board feet), quadratic mean diameter
+- Species composition: breakdown by species with percentage of TPA and basal area
+- Statistical analysis: confidence intervals, sampling error, standard error using Student's t-distribution
+- Diameter distribution: text-based histogram of diameter classes
+- Growth projections: exponential, logistic, and linear growth models with configurable mortality
+- Multi-format I/O: read/write CSV, JSON, and Excel (.xlsx) files; export to GeoJSON
+- Format conversion: convert between any supported formats (CSV, JSON, Excel, GeoJSON)
+- Batch processing: analyze entire directories of inventory files with JSON report output
+- Configuration file: optional `config.toml` for persistent settings (server, analysis, growth, database)
+- Web UI: browser-based dashboard with file upload, interactive charts, data editing, and export
+- SQLite persistence: server-side inventory storage with TTL-based eviction
 
 ## Installation
 
-### Pre-built Binaries
+### Pre-built binaries
 
 Download the latest release from [GitHub Releases](https://github.com/woodsy-will/forest-inventory-analyzer-rust/releases).
 
-**Windows (recommended)**:
-- **MSI installer** — run `forest-analyzer-0.2.0-x86_64-pc-windows-msvc.msi` (version number changes with each release), installs to `%LocalAppData%\ForestAnalyzer` with Start Menu and Desktop shortcuts (no admin required)
-- **ZIP archive** — extract and double-click `start.bat` to launch the web dashboard
+Windows (recommended). Two packages are published:
+- MSI installer: run `forest-analyzer-0.2.0-x86_64-pc-windows-msvc.msi` (the version number changes with each release). It installs to `%LocalAppData%\ForestAnalyzer` with Start Menu and Desktop shortcuts and needs no admin rights.
+- ZIP archive: extract it and double-click `start.bat` to launch the web dashboard.
 
-**macOS**:
+macOS:
 ```bash
 tar xzf forest-analyzer-*-apple-darwin.tar.gz
 ./forest-analyzer serve
 ```
 
-**Linux**:
+Linux:
 ```bash
 tar xzf forest-analyzer-*-x86_64-unknown-linux-gnu.tar.gz
 ./forest-analyzer serve
@@ -43,9 +43,9 @@ tar xzf forest-analyzer-*-x86_64-unknown-linux-gnu.tar.gz
 
 Supported platforms: Windows x64, Linux x64, macOS Intel (x86_64), macOS Apple Silicon (aarch64).
 
-SHA256 checksums (`.sha256` files) are published alongside each artifact for download verification.
+A SHA256 checksum (`.sha256` file) is published beside each artifact. Check the download against it.
 
-### Build from Source
+### Build from source
 
 ```bash
 # Clone the repository
@@ -60,7 +60,9 @@ cargo build --release
 
 ## Usage
 
-### Analyze Inventory Data
+One subcommand per task. The flags shown are the ones you will change most often.
+
+### Analyze inventory data
 
 ```bash
 # Full analysis with default settings
@@ -70,7 +72,7 @@ forest-analyzer analyze --input data/samples/sample_inventory.csv
 forest-analyzer analyze --input inventory.csv --confidence 0.90 --diameter-class-width 4.0
 ```
 
-### Growth Projections
+### Growth projections
 
 ```bash
 # Logistic growth model, 30-year projection
@@ -83,7 +85,7 @@ forest-analyzer growth --input inventory.csv --model exponential --rate 0.02 --m
 forest-analyzer growth --input inventory.csv --model linear --rate 2.0
 ```
 
-### Convert Between Formats
+### Convert between formats
 
 ```bash
 # CSV to JSON
@@ -99,14 +101,14 @@ forest-analyzer convert --input inventory.xlsx --output inventory.csv
 forest-analyzer convert --input inventory.csv --output inventory.geojson --pretty
 ```
 
-### Batch Analysis
+### Batch analysis
 
 ```bash
 # Analyze all inventory files in a directory, output JSON reports
 forest-analyzer analyze-batch --input-dir ./inventories/ --output-dir ./reports/
 ```
 
-### Quick Summary
+### Quick summary
 
 ```bash
 forest-analyzer summary --input inventory.csv
@@ -122,15 +124,15 @@ forest-analyzer serve
 forest-analyzer serve --port 3000
 ```
 
-Then open `http://localhost:8080` in your browser. The web UI supports:
-- Uploading CSV, JSON, and Excel files
-- In-browser data editing with validation
-- Interactive stand metrics, statistics, and growth charts
-- Exporting results in CSV, JSON, or GeoJSON format
+Then open `http://localhost:8080` in a browser. From there you can:
+- Upload CSV, JSON, and Excel files
+- Edit data in the browser, with validation
+- View stand metrics, statistics, and growth charts
+- Export results as CSV, JSON, or GeoJSON
 
 ## Examples
 
-Runnable examples are provided in the `examples/` directory:
+Runnable examples are in the `examples/` directory:
 
 ```bash
 # Basic analysis — load CSV, compute metrics, display tables and histogram
@@ -143,9 +145,9 @@ cargo run --example growth_projection
 cargo run --example format_conversion
 ```
 
-## CSV Format
+## CSV format
 
-The expected CSV format includes these columns:
+CSV input takes these columns:
 
 | Column | Type | Required | Description |
 |--------|------|----------|-------------|
@@ -167,7 +169,7 @@ The expected CSV format includes these columns:
 
 ## Configuration
 
-An optional `config.toml` file can set persistent defaults (all fields are optional):
+An optional `config.toml` sets persistent defaults. Every field is optional.
 
 ```toml
 [server]
@@ -191,6 +193,8 @@ path = "forest_analyzer.db"
 Pass a custom config file with `--config path/to/config.toml` (defaults to `config.toml` in the current directory).
 
 ## Library Usage
+
+The same functions are available as a Rust library. The example below loads a CSV, compiles stand metrics and prints the basal area confidence interval.
 
 ```rust
 use forest_inventory_analyzer::{
@@ -236,18 +240,13 @@ cargo doc --open
 
 ## Methods and limitations
 
-- **Basal area, trees per acre, QMD and sampling statistics** use the standard forms: BA = 0.005454 x DBH^2 per tree,
-  TPA = BAF / BA_tree for variable-radius plots, QMD = sqrt(BA / (0.005454 x TPA)), and a two-sided Student's t interval on
-  plot means (df = n - 1).
-- **Volume equations are generic placeholders, not published regional equations.** The built-in cubic-foot form is
-  V = 0.002454 x DBH^2 x H (a combined-variable approximation with total height) and the board-foot form labelled
-  "Scribner" is V = 0.01159 x DBH^2 x H - 4 x DBH. Neither is taken from a published species or regional table. For any
-  real appraisal, replace them through `VolumeEquation` with the equations your region uses (for example the PNW-FIA
-  tarif or regional Scribner equations) before relying on the volume columns.
-- **Growth projections** are illustrative curves (linear, exponential, logistic with a mortality term), not a calibrated
-  growth-and-yield model such as FVS.
-- **Installers are unsigned.** Windows SmartScreen and macOS Gatekeeper will warn on first launch; verify the
-  download against the `.sha256` file published beside each asset.
+Basal area, trees per acre, QMD and the sampling statistics use the standard forms. BA = 0.005454 x DBH^2 per tree. TPA = BAF / BA_tree for variable-radius plots. QMD = sqrt(BA / (0.005454 x TPA)). The confidence interval is a two-sided Student's t interval on plot means, df = n - 1.
+
+Volume equations are generic placeholders, not published regional equations. The built-in cubic-foot form is V = 0.002454 x DBH^2 x H, a combined-variable approximation with total height. The board-foot form labelled "Scribner" is V = 0.01159 x DBH^2 x H - 4 x DBH. Neither is taken from a published species or regional table. For any real appraisal, replace them through `VolumeEquation` with the equations your region uses (for example the PNW-FIA tarif or regional Scribner equations) before relying on the volume columns.
+
+Growth projections are illustrative curves (linear, exponential, logistic with a mortality term). They are not a calibrated growth-and-yield model such as FVS.
+
+Installers are unsigned. Windows SmartScreen and macOS Gatekeeper will warn on first launch. Check the download against the `.sha256` file published beside each asset.
 
 ## License
 
