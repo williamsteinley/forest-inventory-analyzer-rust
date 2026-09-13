@@ -15,8 +15,26 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-14]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Run test suite
+        run: cargo test --all-features
+
   build:
     name: Build (${{ matrix.target }})
+    needs: test
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
