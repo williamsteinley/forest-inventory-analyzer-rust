@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/woodsy-will/forest-inventory-analyzer-rust/actions/workflows/ci.yml/badge.svg)](https://github.com/woodsy-will/forest-inventory-analyzer-rust/actions/workflows/ci.yml)
 
-A cruise compiler written in Rust. It reads a plot tally from a variable-radius (prism) cruise, or a Survey123 or Field Maps export, and writes per-acre stand metrics, species composition, a text histogram of diameter classes, sampling error with confidence intervals, and a growth projection. Input and output are CSV, JSON or Excel. It runs from the command line; the web dashboard is optional. Volume equations are placeholders and the installers are unsigned. See Methods and limitations.
+A cruise compiler written in Rust. It reads a plot tally from a variable-radius (prism) cruise, or a Survey123 or Field Maps export, and writes per-acre stand metrics, species composition, a text histogram of diameter classes, sampling error with confidence intervals, and a growth projection. Input and output are CSV, JSON or Excel. It runs from the command line; the web dashboard is optional. Volume equations are placeholders and the installers are unsigned. See [Methods and limitations](#methods-and-limitations).
 
 ## Features
 
@@ -46,6 +46,14 @@ Supported platforms: Windows x64, Linux x64, macOS Intel (x86_64), macOS Apple S
 A SHA256 checksum (`.sha256` file) is published beside each artifact. Check the download against it.
 
 ### Build from source
+
+Requires Rust 1.89 or later (`rust-version` in `Cargo.toml`). To install straight from GitHub:
+
+```bash
+cargo install --git https://github.com/woodsy-will/forest-inventory-analyzer-rust
+```
+
+Or clone and build:
 
 ```bash
 # Clone the repository
@@ -250,4 +258,4 @@ Installers are unsigned. Windows SmartScreen and macOS Gatekeeper will warn on f
 
 ## License
 
-MIT
+MIT, see [LICENSE](LICENSE). Release notes are in [CHANGELOG.md](CHANGELOG.md); design notes in [docs/architecture.md](docs/architecture.md).

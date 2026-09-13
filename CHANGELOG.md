@@ -22,6 +22,7 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 - **Automated release pipeline**: GitHub Actions workflow builds cross-platform binaries on `v*` tag push, packages Windows zip + MSI installer, Linux/macOS tarballs, generates SHA256 checksums, and creates a GitHub Release with all artifacts
 - **Windows MSI installer**: WiX-based installer with Start Menu and Desktop shortcuts, per-user install (no admin required), automatic upgrade detection
 - **`start.bat` launcher**: Double-click to start the web server and auto-open the browser; included in Windows zip and MSI distributions
+- **Test suite**: 392 tests run in CI at v0.2.0 (302 unit, 19 CLI integration, 53 library integration, 6 property-based, 5 snapshot, 7 doc-tests)
 
 ### Changed
 - **Dependencies**: calamine 0.26 -> 0.36 (quick-xml 0.41, fixes RUSTSEC-2026-0194/0195), statrs 0.17 -> 0.19 (drops the unmaintained `paste` crate), actix-multipart 0.7 -> 0.8; actix-web built without the `http2` feature so the unpatched h2 0.3 line is no longer linked (RUSTSEC-2026-0258)
@@ -59,7 +60,6 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 - CI/CD pipeline (GitHub Actions) with cross-platform testing, clippy, and fmt checks
 - Architecture documentation (`docs/architecture.md`)
 - Runnable examples: `basic_analysis`, `growth_projection`, `format_conversion`
-- 355 test functions at v0.2.0: 265 unit, 19 CLI integration, 53 library integration, 6 property-based, 5 snapshot, 7 doc-tests
 
 [Unreleased]: https://github.com/woodsy-will/forest-inventory-analyzer-rust/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/woodsy-will/forest-inventory-analyzer-rust/compare/v0.1.0...v0.2.0
