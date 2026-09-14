@@ -1,5 +1,7 @@
 # Forest Inventory Analyzer - TODO
 
+> Historical. This list is from the 0.1.0 development cycle and is kept for the record; the checked items shipped and the rest were dropped or reworked. Current changes are tracked in `CHANGELOG.md`.
+
 ## Priority 1: Quick Wins
 
 - [x] **Add input validation on data load** — Validate DBH > 0, 0 <= crown_ratio <= 1.0, height > 0 when present, expansion_factor > 0. Use the existing `ValidationError` variant which is currently defined but never used anywhere in the codebase. Apply validation in `csv_io::read_csv`, `json_io::read_json`, and `excel_io::read_excel`.
