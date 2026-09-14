@@ -422,8 +422,8 @@ mod tests {
 
     #[test]
     fn test_species_equality_by_code_only() {
-        // CLAUDE.md: "Species matching by code only — same code with
-        // different common_name treated as same species."
+        // Species match by code only: the same code with a different
+        // common_name is the same species.
         let sp1 = Species {
             common_name: "Douglas Fir".to_string(),
             code: "DF".to_string(),
