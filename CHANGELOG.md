@@ -28,7 +28,7 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 - **Dependencies**: calamine 0.26 -> 0.36 (quick-xml 0.41, fixes RUSTSEC-2026-0194/0195), statrs 0.17 -> 0.19 (drops the unmaintained `paste` crate), actix-multipart 0.7 -> 0.8; actix-web built without the `http2` feature so the unpatched h2 0.3 line is no longer linked (RUSTSEC-2026-0258)
 - **MSRV**: 1.75 -> 1.89 (`time` needs edition 2024; `actix-codec`, `nalgebra` and `statrs` need rustc 1.88-1.89)
 - **QMD calculation corrected**: stand-level QMD now uses `sqrt(sum(EF * DBH^2) / sum(EF))` across all live trees instead of averaging per-plot QMDs, which was statistically incorrect
-- **CORS policy restricted**: `allowed_origin` now set to `http://localhost:{port}` instead of allowing all origins
+- **CORS policy restricted**: allowed origins are now `http://localhost:{port}`, `http://127.0.0.1:{port}` and private-network (RFC 1918) origins on the server port, instead of all origins
 - **Eviction throttled**: TTL eviction queries run at most once per 60 seconds per table instead of on every database access
 - **GeoJSON builder deduplicated**: web export now uses the same `build_geojson_value()` function as CLI export, fixing missing properties (`volume_cuft_per_acre`, `volume_bdft_per_acre`, `quadratic_mean_diameter`, `age`, `defect`) in web-exported GeoJSON
 - **Web UI redesigned**: Inter font, sticky header with gradient, hover effects on metric cards, refined chart styling, better mobile responsiveness, section fade-in transitions
@@ -38,6 +38,8 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 - Architecture documentation listed `TreeStatus::Ingrowth` but the actual enum variant is `Missing`
 
 ## [0.1.0] - 2026-03-15
+
+Internal milestone; tagged but never published as a release. The cruise import, release pipeline, MSI installer and `start.bat` listed under 0.2.0 were first committed in this period and shipped with 0.2.0.
 
 ### Added
 - Core library with `ForestInventory`, `Plot`, `Tree`, `Species`, `TreeStatus` domain models

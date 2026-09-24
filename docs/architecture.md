@@ -68,6 +68,7 @@ File reading/writing with trait-based abstraction.
 | `JsonFormat` | Implements both traits for JSON (with `pretty` option) |
 | `ExcelFormat` | Implements both traits for `.xlsx` files |
 | `GeoJsonFormat` | Implements `InventoryWriter` for GeoJSON export (plots as point features) |
+| `cruise_import` | Detects Survey123/Field Maps workbooks by their `Plot_form` sheets and converts the plot tally (BAF expansion to TPA, per-log defect columns) into a `ForestInventory` |
 
 Lenient parsing functions (`parse_csv_lenient`, `parse_json_lenient`, `parse_excel_lenient`) collect all validation issues instead of failing on the first error, enabling the web UI's in-browser data editor.
 
@@ -167,12 +168,13 @@ All fields have defaults; the config file is entirely optional. CLI arguments ov
 | `AnalysisError` | Computation errors |
 | `InsufficientData` | Not enough data for analysis (e.g., < 2 plots for statistics) |
 | `NotFound` | Resource not found (maps to HTTP 404 in web layer) |
+| `Database` | SQLite errors from the web layer's session store |
 
 ## Feature Flags
 
 | Feature | Default | Dependencies Added |
 |---------|---------|-------------------|
-| `web` | Yes | `actix-web`, `actix-multipart`, `actix-cors`, `tokio`, `uuid`, `futures`, `mime`, `rusqlite` |
+| `web` | Yes | `actix-web`, `actix-multipart`, `actix-cors`, `tracing-actix-web`, `tokio`, `uuid`, `futures`, `mime`, `rusqlite` |
 
 Disable with `cargo build --no-default-features` for a minimal library + CLI without the web server.
 

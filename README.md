@@ -2,18 +2,18 @@
 
 [![CI](https://github.com/woodsy-will/forest-inventory-analyzer-rust/actions/workflows/ci.yml/badge.svg)](https://github.com/woodsy-will/forest-inventory-analyzer-rust/actions/workflows/ci.yml)
 
-A cruise compiler written in Rust. It reads a plot tally from a variable-radius (prism) cruise, or a Survey123 or Field Maps export, and writes per-acre stand metrics, species composition, a text histogram of diameter classes, sampling error with confidence intervals, and a growth projection. Input and output are CSV, JSON or Excel. It runs from the command line; the web dashboard is optional. Volume equations are placeholders and the installers are unsigned. See [Methods and limitations](#methods-and-limitations).
+A cruise compiler written in Rust. It reads a plot tally from a variable-radius (prism) cruise, or a Survey123 or Field Maps Excel export (`Plot_form` sheets), and writes per-acre stand metrics, species composition, a text histogram of diameter classes, sampling error with confidence intervals, and a growth projection. Input and output are CSV, JSON or Excel. It runs from the command line; the web dashboard is optional. Volume equations are placeholders and the installers are unsigned. See [Methods and limitations](#methods-and-limitations).
 
 ## Features
 
-- Cruise import: Survey123 and Field Maps plot exports with BAF expansion for variable-radius plots
+- Cruise import: Survey123 and Field Maps Excel exports (`Plot_form` sheets) with BAF expansion for variable-radius plots
 - Stand metrics: trees per acre, basal area, volume (cubic & board feet), quadratic mean diameter
 - Species composition: breakdown by species with percentage of TPA and basal area
 - Statistical analysis: confidence intervals, sampling error, standard error using Student's t-distribution
 - Diameter distribution: text-based histogram of diameter classes
 - Growth projections: exponential, logistic, and linear growth models with configurable mortality
 - Multi-format I/O: read/write CSV, JSON, and Excel (.xlsx) files; export to GeoJSON
-- Format conversion: convert between any supported formats (CSV, JSON, Excel, GeoJSON)
+- Format conversion: convert CSV, JSON or Excel input to CSV, JSON, Excel or GeoJSON output
 - Batch processing: analyze entire directories of inventory files with JSON report output
 - Configuration file: optional `config.toml` for persistent settings (server, analysis, growth, database)
 - Web UI: browser-based dashboard with file upload, interactive charts, data editing, and export
@@ -181,6 +181,7 @@ An optional `config.toml` sets persistent defaults. Every field is optional.
 
 ```toml
 [server]
+bind_address = "127.0.0.1"   # loopback by default; --bind overrides
 port = 8080
 max_upload_bytes = 52428800   # 50 MB
 

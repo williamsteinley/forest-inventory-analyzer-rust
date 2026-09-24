@@ -19,7 +19,7 @@
         Id='*'
         Name='Forest Inventory Analyzer'
         UpgradeCode='4A8B2E6F-1C3D-4E5F-9A0B-7D8E6F2C1A3B'
-        Manufacturer='Forest Inventory Analyzer Contributors'
+        Manufacturer='William Steinley'
         Language='1033'
         Codepage='1252'
         Version='0.1.0'>
@@ -27,7 +27,7 @@
         <Package Id='*'
             Keywords='Installer'
             Description='Forest Inventory Analyzer - Stand metrics, species composition, and growth projections'
-            Manufacturer='Forest Inventory Analyzer Contributors'
+            Manufacturer='William Steinley'
             InstallerVersion='450'
             Languages='1033'
             Compressed='yes'

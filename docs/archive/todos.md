@@ -10,10 +10,10 @@
 - [x] Single-pass metrics calculation — `compute_stand_metrics` calls `mean_tpa()`, `mean_basal_area()`, etc. separately, each iterating all plots | Done: 03-14-2026
 - [x] Add property-based tests with `proptest` for statistical calculations (CI always positive, mean within bounds) | Done: 03-14-2026
 - [x] Add `cargo-deny` to CI for license and duplicate dependency checking | Done: 03-14-2026
-- [x] Add code coverage tracking with `cargo-llvm-cov` and badge in README | Done: 03-14-2026
+- [ ] Add code coverage tracking with `cargo-llvm-cov` and badge in README | Coverage runs in CI as an artifact; no badge was added
 - [x] Add clap value parser for confidence level (0.0-1.0 range validation at parse time, not runtime) | Done: 03-14-2026
 - [x] Add request logging middleware to Actix Web (method, path, status, duration) | Done: 03-14-2026
-- [x] Add criterion benchmark suite for hot paths: metrics computation, diameter distribution, BAF-to-TPA conversion | Done: 03-14-2026
+- [ ] Add criterion benchmark suite for hot paths: metrics computation, diameter distribution, BAF-to-TPA conversion | Not done; no benches/ directory
 - [x] Add MSRV (Minimum Supported Rust Version) check to CI matrix | Done: 03-14-2026
 - [x] Add graceful shutdown handling to web server (SIGTERM/SIGINT with in-flight request drain) | Done: 03-14-2026
 - [x] Add module-level `//!` doc comments to `analysis`, `io`, `visualization`, and `web` modules | Done: 03-14-2026
