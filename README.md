@@ -1,6 +1,6 @@
 # Forest Inventory Analyzer
 
-[![CI](https://github.com/woodsy-will/forest-inventory-analyzer-rust/actions/workflows/ci.yml/badge.svg)](https://github.com/woodsy-will/forest-inventory-analyzer-rust/actions/workflows/ci.yml)
+[![CI](https://github.com/williamsteinley/forest-inventory-analyzer-rust/actions/workflows/ci.yml/badge.svg)](https://github.com/williamsteinley/forest-inventory-analyzer-rust/actions/workflows/ci.yml)
 
 A cruise compiler written in Rust. It reads a plot tally from a variable-radius (prism) cruise, or a Survey123 or Field Maps Excel export (`Plot_form` sheets), and writes per-acre stand metrics, species composition, a text histogram of diameter classes, sampling error with confidence intervals, and a growth projection. Input and output are CSV, JSON or Excel. It runs from the command line; the web dashboard is optional. Volume equations are placeholders and the installers are unsigned. See [Methods and limitations](#methods-and-limitations).
 
@@ -23,7 +23,7 @@ A cruise compiler written in Rust. It reads a plot tally from a variable-radius 
 
 ### Pre-built binaries
 
-Download the latest release from [GitHub Releases](https://github.com/woodsy-will/forest-inventory-analyzer-rust/releases).
+Download the latest release from [GitHub Releases](https://github.com/williamsteinley/forest-inventory-analyzer-rust/releases).
 
 Windows (recommended). Two packages are published:
 - MSI installer: run `forest-analyzer-0.2.0-x86_64-pc-windows-msvc.msi` (the version number changes with each release). It installs to `%LocalAppData%\ForestAnalyzer` with Start Menu and Desktop shortcuts and needs no admin rights.
@@ -50,14 +50,14 @@ A SHA256 checksum (`.sha256` file) is published beside each artifact. Check the 
 Requires Rust 1.89 or later (`rust-version` in `Cargo.toml`). To install straight from GitHub:
 
 ```bash
-cargo install --git https://github.com/woodsy-will/forest-inventory-analyzer-rust
+cargo install --git https://github.com/williamsteinley/forest-inventory-analyzer-rust
 ```
 
 Or clone and build:
 
 ```bash
 # Clone the repository
-git clone https://github.com/woodsy-will/forest-inventory-analyzer-rust.git
+git clone https://github.com/williamsteinley/forest-inventory-analyzer-rust.git
 cd forest-inventory-analyzer-rust
 
 # Build

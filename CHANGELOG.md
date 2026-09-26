@@ -63,6 +63,6 @@ Internal milestone; tagged but never published as a release. The cruise import, 
 - Architecture documentation (`docs/architecture.md`)
 - Runnable examples: `basic_analysis`, `growth_projection`, `format_conversion`
 
-[Unreleased]: https://github.com/woodsy-will/forest-inventory-analyzer-rust/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/woodsy-will/forest-inventory-analyzer-rust/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/woodsy-will/forest-inventory-analyzer-rust/releases/tag/v0.1.0
+[Unreleased]: https://github.com/williamsteinley/forest-inventory-analyzer-rust/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/williamsteinley/forest-inventory-analyzer-rust/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/williamsteinley/forest-inventory-analyzer-rust/releases/tag/v0.1.0
